@@ -20,12 +20,36 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+      #map {
+        height: 350px;
+        width: 600px;
+        margin: auto;
+      }
+    </style>
   </head>
   <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
+
     <div id="root"></div>
+    <div id="map-wrapper"><div id="map"></div></div>
+    <script>
+    function initMap() {
+      var uluru = {lat: 39.8283, lng: -98.5795};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: uluru
+      });
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+      });
+
+      map.setCenter(uluru);
+    }
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCE-vmmkSw5Mc0lcErynEnMXinb96aURvU&callback=initMap">
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
