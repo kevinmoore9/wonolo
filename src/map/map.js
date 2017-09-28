@@ -24,7 +24,6 @@ class Map extends React.Component {
   }
 
   render() {
-    debugger
     if (this.props.jobs) {
       populateMap(this.props.jobs.map(tup => [tup[1], tup[2]]), this.map);
     }

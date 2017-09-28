@@ -4,6 +4,7 @@ import Map from './map/map.js';
 import Filter from './filter/filter.js';
 import { getAuthToken, getJobs, filterJobs } from './app/util';
 
+
 class App extends Component {
   constructor() {
     super();
@@ -14,7 +15,6 @@ class App extends Component {
       typeFilter: null
     }
     this.updateFilters = this.updateFilters.bind(this);
-    this.fetchJobs = this.fetchJobs.bind(this);
   }
 
   async authenticate() {
@@ -66,8 +66,7 @@ class App extends Component {
         </header>
         <Filter updateFilters={this.updateFilters}
                 location={this.state.locationFilter}
-                type={this.state.typeFilter}
-                fetchJobs={this.fetchJobs}/>
+                type={this.state.typeFilter}/>
         <Map jobs={locations}/>
       </div>
     );
