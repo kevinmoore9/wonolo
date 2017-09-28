@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Map from './map/map.js';
 import Filter from './filter/filter.js';
@@ -10,9 +9,13 @@ class App extends Component {
     super();
     this.state = {
       authToken: null,
-      jobs: null
+      jobs: null,
+      locationFilter: null,
+      typeFilter: null
     }
+    this.updateFilters = this.updateFilters.bind(this);
   }
+
   async authenticate() {
     let token;
     try {
@@ -34,6 +37,11 @@ class App extends Component {
     this.setState({jobs: jobs});
   }
 
+  updateFilters(newFilters) {
+    newFilters.flag = true;
+    this.setState(Object.assign(this.state, newFilters));
+
+  }
 
   componentWillMount() {
     this.authenticate();
@@ -52,10 +60,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Wonolo Data Visualization</h1>
         </header>
-        <Filter />
+        <Filter updateFilters={this.updateFilters}
+                location={this.state.locationFilter}
+                type={this.state.typeFilter}/>
         <Map jobs={locations}/>
       </div>
     );
