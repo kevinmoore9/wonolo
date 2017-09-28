@@ -58,7 +58,6 @@ class Filter extends React.Component {
     )
   }
   render() {
-    debugger
     let renderFilter;
     if (!this.state.location) {
       renderFilter = this.renderStateFilter();

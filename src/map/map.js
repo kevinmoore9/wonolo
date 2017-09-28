@@ -16,8 +16,15 @@ class Map extends React.Component {
     this.map.setCenter(this.coords);
   }
 
+  shouldComponentUpdate(newProps, newState) {
+    if (newProps === this.props) {
+      return false;
+    }
+    return true;
+  }
 
   render() {
+    debugger
     if (this.props.jobs) {
       populateMap(this.props.jobs.map(tup => [tup[1], tup[2]]), this.map);
     }

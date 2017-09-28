@@ -18,6 +18,18 @@ export const getJobs = (params) => (
   })
 )
 
+export const filterJobs = (jobs, locationFilter, typeFilter) => {
+  let zip = { 'NY': 1, 'NJ': 0, 'CA': 9 };
+  let result = jobs;
+  if (typeFilter) {
+    result = result.filter(request => (request.category === typeFilter));
+  }
+  if (locationFilter) {
+    result = result.filter(request => (request.zip.split('')[0] == zip[locationFilter]));
+  }
+  return result;
+}
+
 
 function createQueryString(url, params) {
   url += "?";

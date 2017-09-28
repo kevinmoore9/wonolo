@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Map from './map/map.js';
 import Filter from './filter/filter.js';
-import { getAuthToken, getJobs } from './app/util';
+import { getAuthToken, getJobs, filterJobs } from './app/util';
 
 class App extends Component {
   constructor() {
@@ -14,6 +14,7 @@ class App extends Component {
       typeFilter: null
     }
     this.updateFilters = this.updateFilters.bind(this);
+    this.fetchJobs = this.fetchJobs.bind(this);
   }
 
   async authenticate() {
@@ -34,13 +35,14 @@ class App extends Component {
     } catch(e) {
       console.log(e);
     }
+    jobs = filterJobs(jobs.job_requests, this.state.locationFilter, this.state.typeFilter);
     this.setState({jobs: jobs});
   }
 
   updateFilters(newFilters) {
     newFilters.flag = true;
     this.setState(Object.assign(this.state, newFilters));
-
+    this.fetchJobs({token: this.state.authToken, state: "draft"});
   }
 
   componentWillMount() {
@@ -56,7 +58,7 @@ class App extends Component {
 
 
   render() {
-    var locations = this.state.jobs ? this.state.jobs.job_requests.map(request => ([request.id, request.latitude, request.longitude])) : null;
+    var locations = this.state.jobs ? this.state.jobs.map(request => ([request.id, request.latitude, request.longitude])) : null;
     return (
       <div className="App">
         <header className="App-header">
@@ -64,7 +66,8 @@ class App extends Component {
         </header>
         <Filter updateFilters={this.updateFilters}
                 location={this.state.locationFilter}
-                type={this.state.typeFilter}/>
+                type={this.state.typeFilter}
+                fetchJobs={this.fetchJobs}/>
         <Map jobs={locations}/>
       </div>
     );
