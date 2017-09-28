@@ -21,7 +21,7 @@ class App extends Component {
     }
 
     this.setState({authToken: token});
-    this.fetchJobs({token: token});
+    this.fetchJobs({token: token, state: "draft"});
   }
   async fetchJobs(params) {
     let jobs;

@@ -20,8 +20,8 @@ export const getJobs = (params) => (
 
 function createQueryString(url, params) {
   url += "?";
-  url += Object.keys(params).map(key => (
-    encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
-  )).join('&')
+  url += Object.keys(params)
+                      .map(key => (encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
+                      .join("&");
   return url;
 }
