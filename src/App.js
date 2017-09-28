@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import Map from './map/map.js';
+import Filter from './filter/filter.js';
 import { getAuthToken, getJobs } from './app/util';
 
 class App extends Component {
@@ -33,6 +34,7 @@ class App extends Component {
     this.setState({jobs: jobs});
   }
 
+
   componentWillMount() {
     this.authenticate();
   }
@@ -46,15 +48,15 @@ class App extends Component {
 
 
   render() {
+    var locations = this.state.jobs ? this.state.jobs.job_requests.map(request => ([request.id, request.latitude, request.longitude])) : null;
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to React</h1>
           <img src={logo} className="App-logo" alt="logo" />
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Filter />
+        <Map jobs={locations}/>
       </div>
     );
   }

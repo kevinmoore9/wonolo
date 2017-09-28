@@ -18,6 +18,7 @@ export const getJobs = (params) => (
   })
 )
 
+
 function createQueryString(url, params) {
   url += "?";
   url += Object.keys(params).map(key => (
@@ -25,15 +26,3 @@ function createQueryString(url, params) {
   )).join('&')
   return url;
 }
-
-// export const initMap = () => {
-//   var uluru = {lat: -25.363, lng: 131.044};
-//   var map = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 4,
-//     center: uluru
-//   });
-//   var marker = new google.maps.Marker({
-//     position: uluru,
-//     map: map
-//   });
-// }
