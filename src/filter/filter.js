@@ -20,10 +20,8 @@ class Filter extends React.Component {
 
   handleLocation(e) {
     e.preventDefault();
-    // this.setState({location: e.target.attributes[0].value})
     this.props.updateFilters({
       locationFilter: e.target.attributes[0].value,
-      // typeFilter: this.state.type
     });
   }
 
@@ -38,29 +36,47 @@ class Filter extends React.Component {
   renderStateFilter() {
     let states = ["CA", "NJ", "NY"]
     return(
-      <div className='state-filter'>
-      {
-        states.map(state => (
-          <div name={state} onClick={(e) => this.handleLocation(e)}>
-            <img className='state' src={require(`../images/${state}.png`)} />
-            {state}
-          </div>
-        ))
-      }
+      <div>
+        <h3>Where do you live?</h3>
+        <div className='state-filter'>
+        {
+          states.map(state => (
+            <div name={state} className={`state-container ${state}`} key={state} onClick={(e) => this.handleLocation(e)}>
+              <img name={state} className='state' src={require(`../images/${state}.png`)} />
+              <div className="state-name">{state}</div>
+            </div>
+          ))
+        }
+        </div>
       </div>
     )
   }
 
   renderTypeFilter() {
+    let types = ["Fulfillment / Warehousing", "General Labor", "Administrative", "Customer Service", "Event Staff", "Delivery"];
+    let images = {
+      "Fulfillment / Warehousing": "full",
+      "General Labor": "general",
+      "Administrative": "admin",
+      "Customer Service": "customer",
+      "Event Staff": "event",
+      "Delivery": "delivery"
+    }
     return(
-      <div className='type-filter'>
-        <div name="Fulfillment / Warehousing" onClick={(e) => this.handleType(e)}>California</div>
-        <div name="General Labor" onClick={(e) => this.handleType(e)}>New York</div>
-        <div name="Administrative" onClick={(e) => this.handleType(e)}>New Jersey</div>
-        <div name="Customer Service" onClick={(e) => this.handleType(e)}>New Jersey</div>
-        <div name="Event Staff" onClick={(e) => this.handleType(e)}>New Jersey</div>
-        <div name="Delivery" onClick={(e) => this.handleType(e)}>New Jersey</div>
+      <div>
+        <h3>What type of work are you looking for?</h3>
+      <div className='state-filter'>
+        {
+          types.map(type => (
+            <div name={type} className={`type-container ${type}`} key={type} onClick={(e) => this.handleType(e)}>
+              <img name={type} className='type' src={require(`../images/${images[type]}.png`)} />
+              <div className='type-name'>{type}</div>
+            </div>
+          ))
+        }
+
       </div>
+    </div>
     )
   }
   render() {
@@ -70,7 +86,7 @@ class Filter extends React.Component {
     } else if (!this.state.type) {
       renderFilter = this.renderTypeFilter();
     } else {
-      renderFilter = null;
+      renderFilter = <h3 className="results">There are {this.props.jobs} job(s) that match your search!</h3>
     }
     return (
       renderFilter

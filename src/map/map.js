@@ -8,8 +8,9 @@ class Map extends React.Component {
   constructor(props){
     super(props);
     this.coords = {lat: 39.8283, lng: -98.5795};
+    this.zoom = 4;
     this.map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
+      zoom: this.zoom,
       center: this.coords
     });
 
@@ -36,7 +37,22 @@ class Map extends React.Component {
 
     if (this.props.location) {
       this.map.panTo(this.locationCoords[this.props.location]);
-      this.map.setZoom(6);
+      let map = this.map;
+      while (this.zoom < 6) {
+        setTimeout(()=>{
+          map.setZoom(this.zoom)
+        }, 300);
+        this.zoom += 1;
+      }
+    } else {
+      this.map.panTo(this.coords);
+      let map = this.map;
+      while (this.zoom > 4) {
+        setTimeout(()=> {
+          map.setZoom(this.zoom)
+        }, 300);
+        this.zoom -= 1;
+      }
     }
     return(
       null
