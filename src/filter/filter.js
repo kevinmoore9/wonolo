@@ -36,11 +36,17 @@ class Filter extends React.Component {
     });
   }
   renderStateFilter() {
+    let states = ["CA", "NJ", "NY"]
     return(
       <div className='state-filter'>
-        <div name="CA" onClick={(e) => this.handleLocation(e)}>California</div>
-        <div name="NY" onClick={(e) => this.handleLocation(e)}>New York</div>
-        <div name="NJ" onClick={(e) => this.handleLocation(e)}>New Jersey</div>
+      {
+        states.map(state => (
+          <div name={state} onClick={(e) => this.handleLocation(e)}>
+            <img className='state' src={require(`../images/${state}.png`)} />
+            {state}
+          </div>
+        ))
+      }
       </div>
     )
   }

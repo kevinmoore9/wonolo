@@ -14,6 +14,11 @@ class Map extends React.Component {
     });
 
     this.map.setCenter(this.coords);
+    this.locationCoords = {
+      "CA": {lat: 36.778259, lng: -119.417931},
+      "NJ": {lat: 40.0583, lng: -74.4057},
+      "NY": {lat: 40.7128, lng: -74.0059}
+    }
   }
 
   shouldComponentUpdate(newProps, newState) {
@@ -23,9 +28,15 @@ class Map extends React.Component {
     return true;
   }
 
+
   render() {
     if (this.props.jobs) {
       populateMap(this.props.jobs.map(tup => [tup[1], tup[2]]), this.map);
+    }
+
+    if (this.props.location) {
+      this.map.panTo(this.locationCoords[this.props.location]);
+      this.map.setZoom(6);
     }
     return(
       null

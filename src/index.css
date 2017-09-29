@@ -6,8 +6,18 @@ body {
 
 #map {
   height: 350px;
+  max-height:50%;
   width: 600px;
+  position: absolute;
   margin: auto;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+
+}
+.state {
+  height: 100px;
+  /*width: 100px;*/
 }
 
 .state-filter {

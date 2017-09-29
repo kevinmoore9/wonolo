@@ -62,12 +62,12 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Wonolo Data Visualization</h1>
+          <h1 className="App-title">Wonolo Live Search Filtering</h1>
         </header>
         <Filter updateFilters={this.updateFilters}
                 location={this.state.locationFilter}
                 type={this.state.typeFilter}/>
-        <Map jobs={locations}/>
+        <Map jobs={locations} location={this.state.locationFilter}/>
       </div>
     );
   }
