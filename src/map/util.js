@@ -45,7 +45,7 @@ async function launchModal(id, token) {
   modal.append(`
     <h1 class='modal-title'>${job.job_request.category}</h1>
     <p class='modal-desc'>Employer: ${job.job_request.venue}</p>
-    <p>Location: ${job.job_request.address}, ${job.job_request.zip}</p>
+    <p>Location: ${job.job_request.address}, ${job.job_request.zip} -- ${job.job_request.city}</p>
     <p>Hourly Rate: ${job.job_request.w2_hourly_rate ? job.job_request.w2_hourly_rate : 'N/A'}</p>
     `);
   modal.append(exit);
