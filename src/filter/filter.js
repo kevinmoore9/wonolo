@@ -27,9 +27,7 @@ class Filter extends React.Component {
 
   handleType(e) {
     e.preventDefault();
-    // this.setState({type: e.target.attributes[0].value})
     this.props.updateFilters({
-      // locationFilter: this.state.location,
       typeFilter: e.target.attributes[0].value
     });
   }

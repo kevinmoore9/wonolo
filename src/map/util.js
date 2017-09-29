@@ -49,7 +49,6 @@ async function launchModal(id, token) {
     <p>Hourly Rate: ${job.job_request.w2_hourly_rate ? job.job_request.w2_hourly_rate : 'N/A'}</p>
     `);
   modal.append(exit);
-  // wage, category, description, address
 }
 
 function getJobInfo(id, params) {
@@ -59,7 +58,6 @@ function getJobInfo(id, params) {
   }).then(res => {
     return res.text();
   }).then(txt => {
-    // result = JSON.parse(txt);
     return JSON.parse(txt);
   }));
 }

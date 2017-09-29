@@ -23,7 +23,7 @@ class App extends Component {
     try {
       token = await getAuthToken();
     } catch(e) {
-      // console.log(e);
+      console.log(e);
     }
 
     this.setState({authToken: token});
@@ -34,7 +34,7 @@ class App extends Component {
     try {
       jobs = await getJobs(params);
     } catch(e) {
-      // console.log(e);
+      console.log(e);
     }
     jobs = filterJobs(jobs.job_requests, this.state.locationFilter, this.state.typeFilter);
     this.setState({jobs: jobs});
