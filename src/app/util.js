@@ -30,7 +30,6 @@ export const filterJobs = (jobs, locationFilter, typeFilter) => {
   return result;
 }
 
-
 function createQueryString(url, params) {
   url += "?";
   url += Object.keys(params).map(key => (

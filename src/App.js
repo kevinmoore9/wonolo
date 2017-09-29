@@ -82,7 +82,7 @@ class App extends Component {
                 location={this.state.locationFilter}
                 type={this.state.typeFilter}
                 jobs={this.state.jobs ? this.state.jobs.length : 0}/>
-        <Map jobs={locations} location={this.state.locationFilter}/>
+              <Map jobs={locations} location={this.state.locationFilter} token={this.state.authToken}/>
       </div>
     );
   }
