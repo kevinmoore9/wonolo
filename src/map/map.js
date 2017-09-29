@@ -32,7 +32,7 @@ class Map extends React.Component {
 
   render() {
     if (this.props.jobs) {
-      populateMap(this.props.jobs.map(tup => [tup[1], tup[2]]), this.map);
+      populateMap(this.props.jobs, this.map);
     }
 
     if (this.props.location) {
